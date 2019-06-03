@@ -17,6 +17,7 @@ from pygame.sprite import Group
 
 
 def run_game():
+    """game enter function"""
     # init the game and create a screen obj
     pygame.init()
     ai_settings = Settings()
@@ -32,7 +33,18 @@ def run_game():
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
         bullets.update()
+        delete_bullets(bullets)
+
         gf.update_screen(ai_settings, screen, ship, bullets)
+
+
+def delete_bullets(bullets):
+    """delete out screen bullets"""
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+
+    # print(len(bullets))
 
 
 run_game()
