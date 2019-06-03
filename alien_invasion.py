@@ -13,6 +13,7 @@ import pygame
 import game_functions as gf
 from settings import Settings
 from ship import Ship
+from pygame.sprite import Group
 
 
 def run_game():
@@ -24,11 +25,14 @@ def run_game():
 
     # create a space ship
     ship = Ship(ai_settings, screen)
+    # create a group to store bullets
+    bullets = Group()
     # start the main loop
     while True:
-        gf.check_events(ship)
+        gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
-        gf.update_screen(ai_settings, screen, ship)
+        bullets.update()
+        gf.update_screen(ai_settings, screen, ship, bullets)
 
 
 run_game()
