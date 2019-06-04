@@ -12,13 +12,14 @@ import pygame
 
 
 class Ship:
+    """ class represents user's spaceship"""
 
     def __init__(self, ai_settings, screen):
         """init the ship ,set its appearance location"""
         self.screen = screen
         self.ai_settings = ai_settings
         # load ship img
-        self.image = pygame.image.load('./images/ship.bmp')
+        self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 

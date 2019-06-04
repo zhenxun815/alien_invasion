@@ -10,7 +10,7 @@
 
 import sys
 import pygame
-from bullet import Bullet
+from src.bullet import Bullet
 
 
 def check_key_down_events(event, ai_settings, screen, ship, bullets):

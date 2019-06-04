@@ -10,9 +10,9 @@
 
 import pygame
 
-import game_functions as gf
-from settings import Settings
-from ship import Ship
+from src import game_functions as gf
+from src.settings import Settings
+from src.ship import Ship
 from pygame.sprite import Group
 
 
