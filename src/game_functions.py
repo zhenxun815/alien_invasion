@@ -10,7 +10,15 @@
 
 import sys
 import pygame
-from src.bullet import Bullet
+from bullet import Bullet
+from alien import Alien
+
+
+def get_number_aliens_x(ai_settings, alien_width):
+    """ compute count of aliens in each line"""
+    available_space_x = ai_settings.screen_width - 2 * alien_width
+    number_aliens_x = int(available_space_x / (2 * alien_width))
+    return number_aliens_x
 
 
 def check_key_down_events(event, ai_settings, screen, ship, bullets):
@@ -51,13 +59,14 @@ def check_events(ai_setttings, screen, ship, bullets):
             check_key_up_events(event, ship)
 
 
-def update_screen(ai_settings, screen, ship, bullets):
+def update_screen(ai_settings, screen, ship, aliens, bullets):
     """redraw surfaces and update the display"""
     screen.fill(ai_settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
 
     ship.blitme()
+    aliens.draw(screen)
     pygame.display.flip()
 
 
@@ -70,3 +79,17 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
     # print(len(bullets))
+
+
+def create_fleet(ai_settings, screen, aliens):
+    # create aliens group
+    alien = Alien(ai_settings, screen)
+    alien_width = alien.rect.width
+    available_space_x = ai_settings.screen_width - 2 * alien_width
+    number_aliens_x = int(available_space_x / (2 * alien_width))
+
+    for alien_number in range(number_aliens_x):
+        alien = Alien(ai_settings, screen)
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        aliens.add(alien)

@@ -17,7 +17,7 @@ class Alien(Sprite):
 
     def __init__(self, ai_settings, screen):
         """ init  alien obj and set appearance location"""
-        super.__init__()
+        super().__init__()
         self.screen = screen
         self.ai_settings = ai_settings
         # load alien img and set its rect attributes
